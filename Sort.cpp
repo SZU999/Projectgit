@@ -1,15 +1,20 @@
 #include <iostream>
 using namespace std;
 template<typename T> 
-void selection_sort(std::vector<T>& arr) {
-        for (int i = 0; i < arr.size() - 1; i++) {
-                int min = i;
-                for (int j = i + 1; j < arr.size(); j++)
-                        if (arr[j] < arr[min])
-                                min = j;
-                std::swap(arr[i], arr[min]);
+void shell_sort(T array[], int length) {
+    //int h = 1;
+    //while (h < length / 2) {
+    //    h = 2 * h + 1;
+    //}
+    int h = length / 2;
+    while (h >= 1) {
+        for (int i = h; i < length; i++) {
+            for (int j = i; j >= h && array[j] < array[j - h]; j -= h) {
+                std::swap(array[j], array[j - h]);
+            }
         }
-}
+        h = h / 2;
+    }
 int main() {
         int arr[] = { 61, 17, 29, 22, 34, 60, 72, 21, 50, 1, 62 };
         int len = (int) sizeof(arr) / sizeof(*arr);
