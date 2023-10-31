@@ -1,12 +1,14 @@
 #include <iostream>
 using namespace std;
 template<typename T> 
-void bubble_sort(T arr[], int len) {
-        int i, j;
-        for (i = 0; i < len - 1; i++)
-                for (j = 0; j < len - 1 - i; j++)
-                        if (arr[j] > arr[j + 1])
-                                swap(arr[j], arr[j + 1]);
+void selection_sort(std::vector<T>& arr) {
+        for (int i = 0; i < arr.size() - 1; i++) {
+                int min = i;
+                for (int j = i + 1; j < arr.size(); j++)
+                        if (arr[j] < arr[min])
+                                min = j;
+                std::swap(arr[i], arr[min]);
+        }
 }
 int main() {
         int arr[] = { 61, 17, 29, 22, 34, 60, 72, 21, 50, 1, 62 };
